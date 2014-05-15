@@ -24,7 +24,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>4.0.3.RELEASE</version>
+            <version>4.0.4.RELEASE</version>
         </dependency>
         <!--        <dependency>
             <groupId>javax</groupId>
@@ -51,7 +51,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>4.0.3.RELEASE</version>
+            <version>4.0.4.RELEASE</version>
             <exclusions>
                 <exclusion>
                     <groupId>commons-logging</groupId>
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>4.0.3.RELEASE</version>
+            <version>4.0.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
@@ -144,7 +144,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-framework-bom</artifactId>
-                <version>4.0.3.RELEASE</version>
+                <version>4.0.4.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -1,53 +1,62 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.cputauctionnew.domain;
 
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Jean-Paul
  */
 @Entity
-public class ItemCondition {
+public class Users implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-    private String name;
-    private String condition;
-    
-    private ItemCondition(Builder builder) {
-        name = builder.name;
-    }
+    private String accountType;
+    @OneToMany
+    @JoinColumn(name = "Users_id")
+    private List<Logs> logs;
 
-    public String getCondition() {
-        return condition;
+    private Users(Builder aThis) {
     }
 
     public static class Builder {
 
         private String id;
-        private String name;
- public Builder(){};
-        public Builder(String name) {
-            this.name = name;
+        private String accountType;
+        private List<Logs> logs;
+
+        public Builder() {
         }
 
-        public ItemCondition.Builder id(String value) {
+        public Builder(String accountType1) {
+            accountType = accountType1;
+        }
+
+        public Builder id(String value) {
             id = value;
             return this;
         }
 
-        public ItemCondition build() {
-            return new ItemCondition(this);
+        public Builder logs(List<Logs> value) {
+            logs = value;
+            return this;
+        }
+
+        public Users build() {
+            return new Users(this);
         }
     }
 
@@ -60,18 +69,21 @@ public class ItemCondition {
             return false;
         }
 
-        ItemCondition itemCondition = (ItemCondition) o;
+        Users users = (Users) o;
 
-        if (!id.equals(itemCondition.id)) {
+        if (!id.equals(users.id)) {
             return false;
         }
 
         return true;
     }
 
+    public String getID() {
+        return id;
+    }
+
     @Override
     public int hashCode() {
         return id.hashCode();
     }
-    
 }

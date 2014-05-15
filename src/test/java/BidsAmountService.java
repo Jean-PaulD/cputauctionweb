@@ -1,15 +1,19 @@
+
+import com.mycompany.cputauctionnew.domain.Bid;
+import java.util.List;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-package com.mycompany.cputauctionnew.domain;
-
 /**
  *
  * @author Jean-Paul
  */
-public class Electronics {
+public interface BidsAmountService {
+
+    public List<Bid> getBidAbove(int i);
     
 }

@@ -33,22 +33,22 @@ public class Bid implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-   // private int age;
+
+    // private int age;
+    private double amount;
     @Column(unique = true)
     private Long Bid_id;
    // private String email;
-    
-    
-    private long itemID;
+
+    //private long itemID;
     //@Embedded
     //private Contact contact;
     //@OneToMany(cascade = CascadeType.ALL)
     //@JoinColumn(name = "bid_id")
     //List<Account> account;
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_CPUTAuctionNew_war_1.0-SNAPSHOTPU");
-    
-    /*@OneToMany
+
+    @OneToMany
     @JoinColumn(name = "bid_id")
     private List<BidsWon> bidsWon;
     @OneToMany
@@ -60,47 +60,71 @@ public class Bid implements Serializable {
     @OneToMany
     @JoinColumn(name = "bid_id")
     private List<Item> item;
-*/
-    //@JoinColumn(name = "bid_id")
-    //List<Club> clubs;
+
     private Bid(Builder builder) {
 
         id = builder.id;
-       // bidsWon = builder.bidsWon;
-       // cancelBid = builder.cancelBid;
-       // currentBid = builder.currentBid;
-        itemID = builder.itemID;
+        bidsWon = builder.bidsWon;
+        cancelBid = builder.cancelBid;
+        currentBid = builder.currentBid;
+        amount = builder.amount;
         Bid_id = builder.Bid_id;
     }
 
     public Bid() {
 
     }
-    
-    public long getBidID(){
-       return Bid_id;
+
+    public double getAmount() {
+        return amount;
     }
-    
+
+    public long getBidID() {
+        return Bid_id;
+    }
+
     public Long getId() {
 
         return id;
-    }
-
-    public long itemID() {
-        return itemID;
     }
 
     public static class Builder {
 
         private long id;
         private long Bid_id;
-        private long itemID;
+        private double amount;
         private List<BidsWon> bidsWon;
         private List<CancelBid> cancelBid;
         private List<CurrentBid> currentBid;
+        private List<Item> item;
 
         public Builder(long i) {
-            Bid_id = i;
+            amount = i;
+        }
+
+        public Builder amount(double amt) {
+            amount = amt;
+            return this;
+        }
+
+        private Builder bidsWon(List<BidsWon> value) {
+            bidsWon = value;
+            return this;
+        }
+
+        private Builder cancelBid(List<CancelBid> value) {
+            cancelBid = value;
+            return this;
+        }
+
+        private Builder currentBid(List<CurrentBid> value) {
+            currentBid = value;
+            return this;
+        }
+
+        private Builder item(List<Item> value) {
+            item = value;
+            return this;
         }
 
         public Bid build() {
@@ -112,12 +136,7 @@ public class Bid implements Serializable {
             return this;
         }
 
-        public Builder itemID(long itemID1) {
-            itemID = itemID1;
-            return this;
-        }
-
-        public Builder id(Long value){
+        public Builder id(Long value) {
             id = value;
             return this;
         }

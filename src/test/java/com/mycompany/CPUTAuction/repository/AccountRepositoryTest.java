@@ -37,10 +37,10 @@ public class AccountRepositoryTest {
     public void createAccount(){
         
         repo = ctx.getBean(AccountRepository.class);
-        Account acc = new Account.Builder(3001)
+        Account acc = new Account.Builder("jpdebuys@gmail.com")
                 .name("Jean-Paul")
                 .surname("De Buys")
-                .email("jpdebuys@gmail.com")
+                //.email("jpdebuys@gmail.com")
                 .password("1234")
                 .username("JP1")
                 .build();

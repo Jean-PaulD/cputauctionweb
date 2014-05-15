@@ -26,9 +26,9 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(unique = true)
+    //@Column(unique = true)
     private String name;
-    @Column(unique = true)
+    //@Column(unique = true)
     private String surname;
     private int age;
     @Column(unique = true)
@@ -49,10 +49,20 @@ public class Account implements Serializable {
     }
 
     private Account(Builder builder) {
-        Bid = builder.Bid;
+        //Bid = builder.Bid;
+        id = builder.id;
+        name= builder.name;
+        surname= builder.surname;
+        age= builder.age;
+        email= builder.email;
+        itemID= builder.itemID;
+        password= builder.password;
+        username= builder.username;
     }
 
-    public Long getId() {return id;}
+    public Long getId() {
+        return id;
+    }
 
     public static class Builder {
 
@@ -66,26 +76,35 @@ public class Account implements Serializable {
         private String username;
         private List<Bid> Bid;
 
-        public Builder(int i) {
+        public Builder id(Long value) {
+            id = value;
+            return this;
+        }
+
+        public Builder(String i) {
+            email = i;
         }
 
         public Builder name(String nm) {
+            name = nm;
             return this;
         }
 
         public Builder surname(String sn) {
+            surname = sn;
             return this;
         }
 
-        public Builder email(String em) {
-            return this;
-        }
-
+       // public Builder email(String em) {
+        //    return this;
+        //}
         public Builder password(String string) {
+            password = string;
             return this;
         }
 
         public Builder username(String un) {
+            username = un;
             return this;
         }
 
@@ -94,4 +113,30 @@ public class Account implements Serializable {
         }
 
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Account)) {
+            return false;
+        }
+        Account other = (Account) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.mycompany.cputauctionnew.domain.Account[ id=" + id + " ]";
+    }
+
 }
