@@ -71,10 +71,6 @@ public class Bid implements Serializable {
         Bid_id = builder.Bid_id;
     }
 
-    public Bid() {
-
-    }
-
     public double getAmount() {
         return amount;
     }
@@ -99,7 +95,7 @@ public class Bid implements Serializable {
         private List<Item> item;
 
         public Builder(long i) {
-            amount = i;
+            Bid_id = i;
         }
 
         public Builder amount(double amt) {

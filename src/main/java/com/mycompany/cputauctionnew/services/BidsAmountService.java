@@ -1,3 +1,5 @@
+package com.mycompany.cputauctionnew.services;
+
 
 import com.mycompany.cputauctionnew.domain.Bid;
 import java.util.List;

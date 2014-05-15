@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.mycompany.cputauctionnew.services.BidsAmountService;
 import static com.mycompany.CPUTAuction.repository.BidRepositoryTest.ctx;
 import com.mycompany.cputauctionnew.domain.Bid;
 import com.mycompany.cputauctionnew.repository.BidRepository;

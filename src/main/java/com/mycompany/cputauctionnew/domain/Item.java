@@ -39,17 +39,24 @@ public class Item implements Serializable {
     //@JoinColumn(name = "bid_id")
     //List<Account> account;
     /*@OneToMany
-    @JoinColumn(name = "Item_id")
-    private List<Electronics> electronics;
-    @OneToMany
-    @JoinColumn(name = "Item_id")
-    private List<Books> books;
-    @OneToMany
-    @JoinColumn(name = "Item_id")
-    private List<ItemCondition> itemCondition;
-*/
-    
-    private Item(Builder aThis) {
+     @JoinColumn(name = "Item_id")
+     private List<Electronics> electronics;
+     @OneToMany
+     @JoinColumn(name = "Item_id")
+     private List<Books> books;
+     @OneToMany
+     @JoinColumn(name = "Item_id")
+     private List<ItemCondition> itemCondition;
+     */
+
+    private Item(Builder builder) {
+        id = builder.id;
+        itemID = builder.itemID;
+        itemName = builder.itemName;
+        itemDescription = builder.itemDescription;
+        price = builder.price;
+        itemType = builder.itemType;
+
     }
 
     @Override
@@ -89,15 +96,16 @@ public class Item implements Serializable {
         private String itemDescription;
         private double price;
         private String itemType;
-        
+
         public Builder(int i) {
+            itemID = i;
+        }
+
+        public Builder id(long i) {
             id = i;
+            return this;
         }
-        
-        public Builder id (long i){
-          id = i;
-          return this;
-        }
+
         public Builder itemName(String itemName1) {
             itemName = itemName1;
             return this;
@@ -114,7 +122,7 @@ public class Item implements Serializable {
         }
 
         public Builder itemType(String itemType1) {
-            itemType = itemType1; 
+            itemType = itemType1;
             return this;
         }
 

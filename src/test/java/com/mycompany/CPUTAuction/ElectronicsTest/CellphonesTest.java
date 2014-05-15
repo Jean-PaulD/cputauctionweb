@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ItemsTest.ElectronicsTest;
+package com.mycompany.CPUTAuction.ElectronicsTest;
 
 import com.mycompany.cputauctionnew.domain.ItemTypes.Cellphones;
 import org.testng.Assert;

@@ -19,7 +19,6 @@ public class BidsAmountServiceImpl implements BidsAmountService {
     @Autowired
     private BidRepository bidRepository;
 
-    @Override
     public List<Bid> getBidAbove(int amount) {
         List<Bid> bids = new ArrayList<>();
         List<Bid> allBids = bidRepository.findAll();

@@ -34,7 +34,7 @@ public class ItemRepositoryTest {
     @Test
     public void addItem(){
         repo = ctx.getBean(ItemRepository.class);
-        Item b = new Item.Builder(9001)
+        Item b = new Item.Builder(901)
                 .itemName("itemName")
                 .itemDescription("itemDescription")
                 .price(300)

@@ -35,19 +35,20 @@ public class BidRepositoryTest {
     public void createBid() {
 
         repo = ctx.getBean(BidRepository.class);
-        Bid b = new Bid.Builder(10001)
+        Bid b = new Bid.Builder(1001)
+                .amount(300)
                 .build();
         repo.save(b);
         id = b.getId();
         Assert.assertNotNull(b);
 
     }
-/*
+
     @Test(dependsOnMethods = "createBid")
     public void readBid() {
         repo = ctx.getBean(BidRepository.class);
         Bid b = repo.findOne(id);
-        Assert.assertEquals(b.itemID(), 201);
+        Assert.assertEquals(b.getAmount(), 300);
 
     }
 
@@ -55,23 +56,23 @@ public class BidRepositoryTest {
     private void updateBid() {
         repo = ctx.getBean(BidRepository.class);
         Bid b = repo.findOne(id);
-        Bid updatedBid = new Bid.Builder(10001)
+        Bid updatedBid = new Bid.Builder(1001)
                 .b(b)
-                .itemID(201)
+                .amount(201)
                 .build();
 
         repo.save(updatedBid);
 
         Bid newBid = repo.findOne(id);
-        Assert.assertEquals(newBid.itemID(), 201);
+        Assert.assertEquals(newBid.getAmount(), 300);
 
     }
-*/
+
     @Test(dependsOnMethods = "updateBid")
     private void deleteBid() {
         repo = ctx.getBean(BidRepository.class);
-        Bid person = repo.findOne(id);
-        repo.delete(person);
+        Bid b = repo.findOne(id);
+        repo.delete(b);
 
         Bid deletedBid = repo.findOne(id);
 
