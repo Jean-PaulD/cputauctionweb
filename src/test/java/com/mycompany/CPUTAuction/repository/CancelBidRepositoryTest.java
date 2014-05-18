@@ -5,11 +5,14 @@
  */
 package com.mycompany.CPUTAuction.repository;
 
+import static com.mycompany.CPUTAuction.repository.AccountRepositoryTest.ctx;
 import com.mycompany.cputauctionnew.repository.CancelBidRepository;
 import static com.mycompany.CPUTAuction.repository.BidRepositoryTest.ctx;
+import com.mycompany.cputauctionnew.app.config.ConnectionConfig;
 import com.mycompany.cputauctionnew.domain.CancelBid;
 import com.mycompany.cputauctionnew.repository.BidRepository;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
@@ -38,10 +41,9 @@ public class CancelBidRepositoryTest {
     // public void hello() {}
     @Test
     public void cancelBid() {
-        
+
         repo = ctx.getBean(CancelBidRepository.class);
-        CancelBid can = new CancelBid.Builder(10001)
-                .cancel("yes")
+        CancelBid can = new CancelBid.Builder("yes")
                 .build();
         repo.save(can);
         id = can.getId();
@@ -50,6 +52,8 @@ public class CancelBidRepositoryTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);
+
     }
 
     @AfterClass

@@ -37,16 +37,16 @@ public class Bid implements Serializable {
     // private int age;
     private double amount;
     @Column(unique = true)
-    private Long Bid_id;
+    private int Bid_id;
    // private String email;
 
-    //private long itemID;
+    //private Long itemID;
     //@Embedded
     //private Contact contact;
     //@OneToMany(cascade = CascadeType.ALL)
     //@JoinColumn(name = "bid_id")
     //List<Account> account;
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_CPUTAuctionNew_war_1.0-SNAPSHOTPU");
+    //EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_CPUTAuctionNew_war_1.0-SNAPSHOTPU");
 
     @OneToMany
     @JoinColumn(name = "bid_id")
@@ -61,6 +61,8 @@ public class Bid implements Serializable {
     @JoinColumn(name = "bid_id")
     private List<Item> item;
 
+    private Bid(){}
+    
     private Bid(Builder builder) {
 
         id = builder.id;
@@ -75,7 +77,7 @@ public class Bid implements Serializable {
         return amount;
     }
 
-    public long getBidID() {
+    public int getBidID() {
         return Bid_id;
     }
 
@@ -86,15 +88,15 @@ public class Bid implements Serializable {
 
     public static class Builder {
 
-        private long id;
-        private long Bid_id;
+        private Long id;
+        private int Bid_id;
         private double amount;
         private List<BidsWon> bidsWon;
         private List<CancelBid> cancelBid;
         private List<CurrentBid> currentBid;
         private List<Item> item;
 
-        public Builder(long i) {
+        public Builder(int i) {
             Bid_id = i;
         }
 
@@ -162,7 +164,7 @@ public class Bid implements Serializable {
     public String toString() {
         return "com.mycompany.cputauctionnew.domain.Bid[ id=" + id + " ]";
     }
-
+/*
     public void persist(Object object) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -175,6 +177,6 @@ public class Bid implements Serializable {
         } finally {
             em.close();
         }
-    }
+    } */
 
 }

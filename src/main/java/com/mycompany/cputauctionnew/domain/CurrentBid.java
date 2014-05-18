@@ -22,9 +22,14 @@ public class CurrentBid implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private double bidPrice;
+    private String seller;
 
-    private CurrentBid(Builder aThis) {
-         }
+    private CurrentBid(Builder builder) {
+        id = builder.id;
+        bidPrice = builder.bidPrice;
+        seller = builder.seller;
+    }
 
     @Override
     public int hashCode() {
@@ -51,24 +56,30 @@ public class CurrentBid implements Serializable {
         return "com.mycompany.cputauctionnew.domain.CurrentBid[ id=" + id + " ]";
     }
 
-    public Long getId() {return id;  }
+    public Long getId() {
+        return id;
+    }
 
     public static class Builder {
 
-        public Builder(int i) {
-        }
+        private Long id;
+        private double bidPrice;
+        private String seller;
 
-        public Builder BidPrice(int i) {
-            return this;
+        public Builder(double i) {
+            bidPrice = i;
         }
 
         public Builder seller(String sellerName) {
+            sellerName = seller;
             return this;
         }
         
         
-        public CurrentBid build(){
-        return new CurrentBid(this);}
+        
+        public CurrentBid build() {
+            return new CurrentBid(this);
+        }
     }
 
 }

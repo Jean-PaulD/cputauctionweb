@@ -25,7 +25,12 @@ public class BidsWon implements Serializable {
     private double bidPrice;
     private String seller;
 
-    private BidsWon(Builder aThis) {
+    private BidsWon(){}
+    
+    private BidsWon(Builder builder) {
+        id = builder.id;
+        bidPrice = builder.bidPrice;
+        seller = builder.seller;
     }
 
     @Override
@@ -59,14 +64,16 @@ public class BidsWon implements Serializable {
 
     public static class Builder {
 
-        public Builder(int i) {
-        }
+        private Long id;
+        private double bidPrice;
+        private String seller;
 
-        public Builder bidPrice(double i) {
-            return this;
+        public Builder(double i) {
+            bidPrice = i;
         }
 
         public Builder seller(String name) {
+            seller = name;
             return this;
         }
 

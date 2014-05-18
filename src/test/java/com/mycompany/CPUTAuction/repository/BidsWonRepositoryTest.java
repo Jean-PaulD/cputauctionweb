@@ -6,9 +6,12 @@
 
 package com.mycompany.CPUTAuction.repository;
 
+import static com.mycompany.CPUTAuction.repository.AccountRepositoryTest.ctx;
+import com.mycompany.cputauctionnew.app.config.ConnectionConfig;
 import com.mycompany.cputauctionnew.domain.BidsWon;
 import com.mycompany.cputauctionnew.repository.BidsWonRepository;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
@@ -36,7 +39,6 @@ public class BidsWonRepositoryTest {
     public void winBid(){
         repo = ctx.getBean(BidsWonRepository.class);
         BidsWon b = new BidsWon.Builder(50001)
-                .bidPrice(200)
                 .seller("John")
                 .build();
         repo.save(b);
@@ -53,6 +55,8 @@ public class BidsWonRepositoryTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);
+
     }
 
     @AfterClass

@@ -6,9 +6,12 @@
 
 package com.mycompany.CPUTAuction.repository;
 
+import static com.mycompany.CPUTAuction.repository.AccountRepositoryTest.ctx;
+import com.mycompany.cputauctionnew.app.config.ConnectionConfig;
 import com.mycompany.cputauctionnew.domain.Item;
 import com.mycompany.cputauctionnew.repository.ItemRepository;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
@@ -46,8 +49,10 @@ public class ItemRepositoryTest {
 
     }
     
-    @BeforeClass
+   @BeforeClass
     public static void setUpClass() throws Exception {
+        ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);
+
     }
 
     @AfterClass

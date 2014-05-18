@@ -28,7 +28,11 @@ public class CancelBid implements Serializable {
     //@Column(unique = true)
     //private String email;
 
-    private CancelBid(Builder aThis) {
+    private CancelBid(){}
+    
+    private CancelBid(Builder builder) {
+        id = builder.id;
+        cancelled = builder.cancelled;
     }
 
     public Long getId() {
@@ -36,13 +40,16 @@ public class CancelBid implements Serializable {
     }
 
     public static class Builder {
-
+        
+        private Long id;
         private String cancelled = "no";
 
-        public Builder(int i) {
+        public Builder(String i) {
+            cancelled = i;
         }
 
-        public Builder cancel(String b) {
+        public Builder id(Long value) {
+            id = value;
             return this;
         }
 

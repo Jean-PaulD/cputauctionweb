@@ -6,9 +6,12 @@
 
 package com.mycompany.CPUTAuction.repository;
 
+import static com.mycompany.CPUTAuction.repository.AccountRepositoryTest.ctx;
+import com.mycompany.cputauctionnew.app.config.ConnectionConfig;
 import com.mycompany.cputauctionnew.domain.CurrentBid;
 import com.mycompany.cputauctionnew.repository.CurrentBidRepository;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
@@ -34,8 +37,7 @@ public class CurrentBidRepositoryTest {
     @Test
     public void CurrentBid(){
         repo = ctx.getBean(CurrentBidRepository.class);
-        CurrentBid b = new CurrentBid.Builder(701)
-                .BidPrice(200)
+        CurrentBid b = new CurrentBid.Builder(70)
                 .seller("sellerName")
                 .build();
         repo.save(b);
@@ -47,6 +49,8 @@ public class CurrentBidRepositoryTest {
     
     @BeforeClass
     public static void setUpClass() throws Exception {
+        ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);
+
     }
 
     @AfterClass

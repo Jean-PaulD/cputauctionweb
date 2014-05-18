@@ -40,12 +40,8 @@ public class Account implements Serializable {
     @OneToMany
     @JoinColumn(name = "Account_id")
     private List<Bid> Bid;
-
-    private Account(String user, String pass, String nm, String sn) {
-        password = pass;
-        username = user;
-        name = nm;
-        surname = sn;
+    
+    private Account() {
     }
 
     private Account(Builder builder) {
@@ -60,6 +56,10 @@ public class Account implements Serializable {
         username= builder.username;
     }
 
+    public String getUsername(){
+        return username;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -95,9 +95,6 @@ public class Account implements Serializable {
             return this;
         }
 
-       // public Builder email(String em) {
-        //    return this;
-        //}
         public Builder password(String string) {
             password = string;
             return this;

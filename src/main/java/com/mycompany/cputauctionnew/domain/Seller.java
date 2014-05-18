@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.cputauctionnew.domain;
 
 import java.io.Serializable;
@@ -21,44 +20,49 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Seller implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String surname;
-    private String email;
-    private String phone;
-    //@OneToMany
-    //@JoinColumn(name = "Seller_id")
-    //private List<Bid> bid;
+    private String username;
+    @OneToMany
+    @JoinColumn(name = "Seller_id")
+    private List<Bid> bid;
+
+    private Seller() {
+    }
 
     private Seller(Builder builder) {
-       id = builder.id;
-       
+        id = builder.id;
+
     }
-    
-    public Long getId() {
+
+    public String getUsername() {
+
+        return username;
+    }
+
+    public Long getID() {
         return id;
     }
 
-    
     public static class Builder {
 
         private Long id;
         private String username;
-        private String name;
-        private String surname;
-        private String email;
-        private String phone;
-        
-        public Builder(){}
-        public Builder(String username, String password,
-                String name) {
-            this.name = name;
+        private List<Bid> bid;
+
+        public Builder() {
         }
 
-        
+        public Builder(String username1) {
+            username = username1;
+        }
+
+        /*public List<Bid> bid_id(Long i){
+         return bid;
+         }*/
         public Builder id(Long value) {
             id = value;
             return this;
@@ -68,10 +72,6 @@ public class Seller implements Serializable {
             return new Seller(this);
         }
     }
-
-    
-    
-    
 
     @Override
     public int hashCode() {
@@ -97,5 +97,5 @@ public class Seller implements Serializable {
     public String toString() {
         return "com.mycompany.cputauctionnew.domain.Seller[ id=" + id + " ]";
     }
-    
+
 }

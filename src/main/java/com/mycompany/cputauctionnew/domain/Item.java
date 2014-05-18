@@ -48,6 +48,7 @@ public class Item implements Serializable {
      @JoinColumn(name = "Item_id")
      private List<ItemCondition> itemCondition;
      */
+    private Item(){}
 
     private Item(Builder builder) {
         id = builder.id;

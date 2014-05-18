@@ -23,18 +23,26 @@ public class Users implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String accountType;
     @OneToMany
     @JoinColumn(name = "Users_id")
     private List<Logs> logs;
 
     private Users(Builder aThis) {
+        id = aThis.id;
+        accountType = aThis.accountType;
+        logs = aThis.logs;
+
     }
 
+    public String accountType(){
+        return accountType;
+    }
+    
     public static class Builder {
 
-        private String id;
+        private Long id;
         private String accountType;
         private List<Logs> logs;
 
@@ -43,9 +51,10 @@ public class Users implements Serializable {
 
         public Builder(String accountType1) {
             accountType = accountType1;
+
         }
 
-        public Builder id(String value) {
+        public Builder id(Long value) {
             id = value;
             return this;
         }
@@ -78,7 +87,7 @@ public class Users implements Serializable {
         return true;
     }
 
-    public String getID() {
+    public Long getID() {
         return id;
     }
 

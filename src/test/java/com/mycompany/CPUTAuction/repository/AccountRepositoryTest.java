@@ -6,9 +6,11 @@
 
 package com.mycompany.CPUTAuction.repository;
 
+import com.mycompany.cputauctionnew.app.config.ConnectionConfig;
 import com.mycompany.cputauctionnew.domain.Account;
 import com.mycompany.cputauctionnew.repository.AccountRepository;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
@@ -50,10 +52,50 @@ public class AccountRepositoryTest {
 
     }
     
-    @BeforeClass
-    public static void setUpClass() throws Exception {
+    
+    @Test(dependsOnMethods = "createAccount")
+    public void readAccount() {
+        repo = ctx.getBean(AccountRepository.class);
+        Account b = repo.findOne(id);
+        Assert.assertEquals(b.getUsername(), "JP1");
     }
 
+    @Test(dependsOnMethods = "readAccount")
+    private void updateAccount() {
+        repo = ctx.getBean(AccountRepository.class);
+        Account b = repo.findOne(id);
+        Account updatedAccount = new Account.Builder("jpdebuys@gmail.com")
+                .name("Jean-Update")
+                .surname("De Update")
+                //.email("jpdebuys@gmail.com")
+                .password("Update")
+                .username("Update1")
+                .build();
+        repo.save(updatedAccount);
+
+        Account newAccount = repo.findOne(id);
+        Assert.assertEquals(newAccount.getUsername(), "Update1");
+
+    }
+
+    @Test(dependsOnMethods = "updateAccount")
+    private void deleteAccount() {
+        repo = ctx.getBean(AccountRepository.class);
+        Account b = repo.findOne(id);
+        repo.delete(b);
+
+        Account deletedAccount = repo.findOne(id);
+
+        Assert.assertNull(deletedAccount);
+
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+        ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);
+
+    }
+    
     @AfterClass
     public static void tearDownClass() throws Exception {
     }

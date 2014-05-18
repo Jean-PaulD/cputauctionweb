@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.cputauctionnew.domain;
+
 import java.io.Serializable;
 import java.security.Timestamp;
 import java.util.List;
@@ -16,7 +17,7 @@ import javax.persistence.Id;
  * @author Jean-Paul
  */
 @Entity
-public class Logs implements  Serializable {
+public class Logs implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -25,14 +26,14 @@ public class Logs implements  Serializable {
     private String username;
     private String password;
     private Timestamp log;
+    private String tmpLog;
 
     private Logs() {
     }
 
-    private Logs(Builder aThis) {
-
-        username = aThis.username;
-        password = aThis.password;
+    private Logs(Builder builder) {
+            id = builder.id;
+            tmpLog = builder.tmpLog;
     }
 
     public Timestamp getLog() {
@@ -51,22 +52,35 @@ public class Logs implements  Serializable {
         return id;
     }
 
+    public String getTmpLog() {
+        return tmpLog;
+    }
+
     public static class Builder {
 
-        private String id;
+        private Long id;
         private String username;
         private String password;
         private Timestamp log;
-public Builder(){}
-        public Builder(String username) {
-            this.username = username;
+        private String tmpLog;
+
+        public Builder() {
         }
-        
-        public Timestamp getLog(){
+
+        public Builder(String tmpLog1) {
+            tmpLog = tmpLog1;
+        }
+
+        public Timestamp getLog() {
             return log;
         }
 
-        public Logs.Builder id(String value) {
+        public String tmpLog(String i) {
+            tmpLog = i;
+            return tmpLog;
+        }
+
+        public Builder id(Long value) {
             id = value;
             return this;
         }

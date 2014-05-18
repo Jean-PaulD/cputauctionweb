@@ -6,10 +6,13 @@
 
 import com.mycompany.cputauctionnew.services.BidsAmountService;
 import static com.mycompany.CPUTAuction.repository.BidRepositoryTest.ctx;
+import static com.mycompany.CPUTAuction.repository.LogsRepositoryTest.ctx;
+import com.mycompany.cputauctionnew.app.config.ConnectionConfig;
 import com.mycompany.cputauctionnew.domain.Bid;
 import com.mycompany.cputauctionnew.repository.BidRepository;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
@@ -29,7 +32,8 @@ public class MakeBidServiceTest {
 
     private BidRepository bidRepository;
     private BidsAmountService bidsAmountService;
-
+    
+    @Test
     public MakeBidServiceTest() {
 
         bidRepository = ctx.getBean(BidRepository.class);
@@ -66,12 +70,15 @@ public class MakeBidServiceTest {
     // @Test
     // public void hello() {}
 
-    @BeforeClass
+     @BeforeClass
     public static void setUpClass() throws Exception {
+        ctx = new AnnotationConfigApplicationContext(ConnectionConfigTest.class);
+
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
+        
     }
 
     @BeforeMethod
@@ -80,5 +87,7 @@ public class MakeBidServiceTest {
 
     @AfterMethod
     public void tearDownMethod() throws Exception {
+       bidRepository = ctx.getBean(BidRepository.class);
+       bidRepository.deleteAll();
     }
 }
