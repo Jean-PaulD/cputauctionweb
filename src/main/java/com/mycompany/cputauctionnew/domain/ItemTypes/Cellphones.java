@@ -15,7 +15,13 @@ public class Cellphones {
     private double price;
     private String name;
 
-    private Cellphones(Cellphones.Builder builder) {
+    //private CellPhones(){}
+    
+    private Cellphones(Builder builder) {
+        id = builder.id;
+        //brand = builder.brand;
+       // price= builder.price;
+       //name= builder.name;
     }
 
     public String getId() {
@@ -49,7 +55,7 @@ public class Cellphones {
             this.price = price;
         }
 
-        public Cellphones.Builder id(String value) {
+        public Builder id(String value) {
             id = value;
             return this;
         }

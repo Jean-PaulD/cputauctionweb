@@ -1,11 +1,13 @@
+package com.mycompany.CPUTAuction.ElectronicsTest.old;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.CPUTAuction.ElectronicsTest;
 
-import com.mycompany.cputauctionnew.domain.ItemTypes.Cellphones;
+import com.mycompany.cputauctionnew.domain.ItemTypes.Peripheral;
 import org.testng.Assert;
+import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -16,9 +18,9 @@ import org.testng.annotations.Test;
  *
  * @author Jean-Paul
  */
-public class CellphonesTest {
+public class PeripheralsTest {
     
-    public CellphonesTest() {
+    public PeripheralsTest() {
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
@@ -28,13 +30,13 @@ public class CellphonesTest {
 
     @Test
     public void testCreation() throws Exception {
-        Cellphones b = new Cellphones.Builder().id("90").build();
+        Peripheral b = new Peripheral.Builder().id("90").build();
         Assert.assertEquals(b.getID(), "90");
   }
 
     @Test
     public void testUpdate() throws Exception {
-        Cellphones b = new Cellphones.Builder().id("90").build();
+        Peripheral b = new Peripheral.Builder().id("90").build();
         
     }
     

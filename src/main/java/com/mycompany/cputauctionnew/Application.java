@@ -1,8 +1,4 @@
-package com.mycompany.cputauctionnew.services;
-
-
-import com.mycompany.cputauctionnew.domain.Bid;
-import java.util.List;
+package com.mycompany.cputauctionnew;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,8 +10,6 @@ import java.util.List;
  *
  * @author Jean-Paul
  */
-public interface BidsAmountService {
-
-    public List<Bid> getBidAbove(double i);
+public interface Application {
     
 }

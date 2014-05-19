@@ -1,4 +1,5 @@
 
+import com.mycompany.cputauctionnew.Application;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;

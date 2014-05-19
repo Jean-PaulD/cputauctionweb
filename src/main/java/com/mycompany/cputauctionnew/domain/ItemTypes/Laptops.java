@@ -9,13 +9,14 @@ package com.mycompany.cputauctionnew.domain.ItemTypes;
  * @author Jean-Paul
  */
 public class Laptops {
-    
+
     private String id;
     private String brand;
     private double price;
     private String name;
 
-    private Laptops(Laptops.Builder builder) {
+    private Laptops(Builder builder) {
+        id = builder.id;
     }
 
     public String getId() {
@@ -40,13 +41,16 @@ public class Laptops {
         private String brand;
         private double price;
         private String name;
-public Builder(){}
+
+        public Builder() {
+        }
+
         public Builder(String name, double price) {
             this.name = name;
             this.price = price;
         }
 
-        public Laptops.Builder id(String value) {
+        public Builder id(String value) {
             id = value;
             return this;
         }

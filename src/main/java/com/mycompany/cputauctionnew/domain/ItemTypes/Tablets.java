@@ -14,7 +14,8 @@ public class Tablets {
     private double price;
     private String name;
 
-    private Tablets(Tablets.Builder builder) {
+    private Tablets(Builder builder) {
+        id = builder.id;
     }
 
     public String getId() {

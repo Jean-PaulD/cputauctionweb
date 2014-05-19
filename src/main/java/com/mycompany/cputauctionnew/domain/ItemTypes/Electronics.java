@@ -22,6 +22,7 @@ public class Electronics {
     private List<Peripheral> peripheral;
 
     private Electronics(Builder builder) {
+        id = builder.id;
         name = builder.name;
         price = builder.price;
     }
@@ -30,8 +31,8 @@ public class Electronics {
         return id;
     }
 
-    private Electronics() {
-    }
+    //private Electronics() {
+    //}
 
     public double itemPrice() {
         return price;

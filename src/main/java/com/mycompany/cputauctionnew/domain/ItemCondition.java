@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.cputauctionnew.domain;
 
 import javax.persistence.Entity;
@@ -17,15 +16,29 @@ import javax.persistence.Id;
  */
 @Entity
 public class ItemCondition {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String name;
     private String condition;
-    
+
+    private ItemCondition() {
+    }
+
     private ItemCondition(Builder builder) {
+        id = builder.id;
         name = builder.name;
+        condition = builder.condition;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getID() {
+        return id;
     }
 
     public String getCondition() {
@@ -34,14 +47,30 @@ public class ItemCondition {
 
     public static class Builder {
 
-        private String id;
+        private Long id;
         private String name;
- public Builder(){};
-        public Builder(String name) {
-            this.name = name;
+        private String condition;
+
+        public Builder ItemCondition(ItemCondition itemCondition) {
+            id = itemCondition.getID();
+            name = itemCondition.getCondition();
+            condition = itemCondition.getCondition();
+            return this;
         }
 
-        public ItemCondition.Builder id(String value) {
+        public Builder() {
+        }
+
+        public Builder condition(String value) {
+            condition = value;
+            return this;
+        }
+
+        public Builder(String name1) {
+            name = name1;
+        }
+
+        public Builder id(Long value) {
             id = value;
             return this;
         }
@@ -73,5 +102,5 @@ public class ItemCondition {
     public int hashCode() {
         return id.hashCode();
     }
-    
+
 }

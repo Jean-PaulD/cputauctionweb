@@ -1,9 +1,12 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import com.mycompany.cputauctionnew.domain.ItemTypes.Storage;
+package com.mycompany.CPUTAuction.ElectronicsTest;
+
+import com.mycompany.cputauctionnew.domain.ItemTypes.Laptops;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
@@ -16,28 +19,27 @@ import org.testng.annotations.Test;
  *
  * @author Jean-Paul
  */
-public class StorageTest {
+public class LaptopsNewTest {
     
-    public StorageTest() {
+    public LaptopsNewTest() {
     }
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
     // public void hello() {}
-
-      @Test
+ @Test
     public void testCreation() throws Exception {
-        Storage b = new Storage.Builder().id("90").build();
+        Laptops b = new Laptops.Builder().id("90").build();
         Assert.assertEquals(b.getID(), "90");
   }
 
     @Test
     public void testUpdate() throws Exception {
-        Storage b = new Storage.Builder().id("90").build();
+        Laptops b = new Laptops.Builder().id("90").build();
         
     }
-    
     @BeforeClass
     public static void setUpClass() throws Exception {
     }

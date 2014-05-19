@@ -15,7 +15,8 @@ public class Storage {
     private double price;
     private String name;
 
-    private Storage(Storage.Builder builder) {
+    private Storage(Builder builder) {
+        id = builder.id;
     }
 
     public String getId() {

@@ -15,7 +15,8 @@ public class Peripheral {
     private double price;
     private String name;
 
-    private Peripheral(Peripheral.Builder builder) {
+    private Peripheral(Builder builder) {
+        id = builder.id;
     }
 
     public String getId() {

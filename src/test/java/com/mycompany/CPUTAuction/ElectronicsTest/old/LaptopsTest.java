@@ -1,9 +1,11 @@
+package com.mycompany.CPUTAuction.ElectronicsTest.old;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import com.mycompany.cputauctionnew.domain.ItemTypes.Electronics;
+import com.mycompany.cputauctionnew.domain.ItemTypes.Laptops;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
@@ -16,9 +18,9 @@ import org.testng.annotations.Test;
  *
  * @author Jean-Paul
  */
-public class ElectronicsTest {
+public class LaptopsTest {
     
-    public ElectronicsTest() {
+    public LaptopsTest() {
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
@@ -26,15 +28,15 @@ public class ElectronicsTest {
     // @Test
     // public void hello() {}
 
-     @Test
+    @Test
     public void testCreation() throws Exception {
-        Electronics b = new Electronics.Builder().id("90").build();
+        Laptops b = new Laptops.Builder().id("90").build();
         Assert.assertEquals(b.getID(), "90");
   }
 
     @Test
     public void testUpdate() throws Exception {
-        Electronics b = new Electronics.Builder().id("90").build();
+        Laptops b = new Laptops.Builder().id("90").build();
         
     }
     
