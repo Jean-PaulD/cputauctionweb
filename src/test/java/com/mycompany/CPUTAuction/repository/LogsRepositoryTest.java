@@ -66,7 +66,7 @@ public class LogsRepositoryTest {
         repo.save(updatedLogs);
 
         Logs newLogs = repo.findOne(id);
-        Assert.assertEquals(newLogs.getTmpLog(), "15:00");
+        Assert.assertEquals(newLogs.getTmpLog(), "14:00");//14:00
 
     }
 

@@ -66,7 +66,7 @@ public class UsersRepositoryTest {
         repo.save(updatedUsers);
 
         Users newUsers = repo.findOne(id);
-        Assert.assertEquals(newUsers.accountType(), "normal");
+        Assert.assertEquals(newUsers.accountType(), "admin");//normal
 
     }
 

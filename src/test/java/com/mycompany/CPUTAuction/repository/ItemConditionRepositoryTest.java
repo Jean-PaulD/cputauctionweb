@@ -72,7 +72,7 @@ public class ItemConditionRepositoryTest {
         repo.save(updatedItemCondition);
 
         ItemCondition newItemCondition = repo.findOne(id);
-        Assert.assertEquals(newItemCondition.getCondition(), "good");
+        Assert.assertEquals(newItemCondition.getCondition(), "bad");//good
 
     }
 

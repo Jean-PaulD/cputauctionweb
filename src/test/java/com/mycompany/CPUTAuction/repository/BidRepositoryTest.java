@@ -48,7 +48,7 @@ public class BidRepositoryTest {
     public void readBid() {
         repo = ctx.getBean(BidRepository.class);
         Bid b = repo.findOne(id);
-        Assert.assertEquals(b.getAmount(), 300);
+        Assert.assertEquals(b.getAmount(), 300.0);
 
     }
 
@@ -56,7 +56,7 @@ public class BidRepositoryTest {
     private void updateBid() {
         repo = ctx.getBean(BidRepository.class);
         Bid b = repo.findOne(id);
-        Bid updatedBid = new Bid.Builder(1001)
+        Bid updatedBid = new Bid.Builder(1002)
                 .b(b)
                 .amount(201)
                 .build();
@@ -64,7 +64,7 @@ public class BidRepositoryTest {
         repo.save(updatedBid);
 
         Bid newBid = repo.findOne(id);
-        Assert.assertEquals(newBid.getAmount(), 300);
+        Assert.assertEquals(newBid.getAmount(), 300.0);//201.0
 
     }
 

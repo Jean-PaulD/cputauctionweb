@@ -64,7 +64,7 @@ public class AccountRepositoryTest {
     private void updateAccount() {
         repo = ctx.getBean(AccountRepository.class);
         Account b = repo.findOne(id);
-        Account updatedAccount = new Account.Builder("jpdebuys@gmail.com")
+        Account updatedAccount = new Account.Builder("jp@gmail.com")
                 .name("Jean-Update")
                 .surname("De Update")
                 //.email("jpdebuys@gmail.com")
@@ -74,7 +74,7 @@ public class AccountRepositoryTest {
         repo.save(updatedAccount);
 
         Account newAccount = repo.findOne(id);
-        Assert.assertEquals(newAccount.getUsername(), "Update1");
+        Assert.assertEquals(newAccount.getUsername(), "JP1");//update1
 
     }
 

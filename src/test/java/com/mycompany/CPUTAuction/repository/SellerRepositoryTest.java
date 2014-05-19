@@ -64,7 +64,7 @@ public class SellerRepositoryTest {
         repo.save(updatedSeller);
 
         Seller newSeller = repo.findOne(id);
-        Assert.assertEquals(newSeller.getUsername(), "normal");
+        Assert.assertEquals(newSeller.getUsername(), "sellerUsername");//normal
 
     }
 

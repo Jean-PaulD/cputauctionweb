@@ -35,7 +35,7 @@ public class Seller implements Serializable {
 
     private Seller(Builder builder) {
         id = builder.id;
-
+        username = builder.username;
     }
 
     public String getUsername() {
