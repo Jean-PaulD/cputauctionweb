@@ -28,7 +28,7 @@ public class Users implements Serializable {
     @OneToMany
     @JoinColumn(name = "Users_id")
     private List<Logs> logs;
-
+private Users(){}
     private Users(Builder aThis) {
         id = aThis.id;
         accountType = aThis.accountType;

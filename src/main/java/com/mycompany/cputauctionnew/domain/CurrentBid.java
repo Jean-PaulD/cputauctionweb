@@ -25,6 +25,9 @@ public class CurrentBid implements Serializable {
     private double bidPrice;
     private String seller;
 
+    private CurrentBid() {
+    }
+
     private CurrentBid(Builder builder) {
         id = builder.id;
         bidPrice = builder.bidPrice;
@@ -74,9 +77,7 @@ public class CurrentBid implements Serializable {
             sellerName = seller;
             return this;
         }
-        
-        
-        
+
         public CurrentBid build() {
             return new CurrentBid(this);
         }

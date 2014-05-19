@@ -45,17 +45,20 @@ public class CheckCurrentBidTest {
     // public void hello() {}
     
       @Test
-    public void getBidAmountTest() {
+    public void checkCurrentBidtTest() {
         currentBidRepository = ctx.getBean(CurrentBidRepository.class);
         checkCurrentBidService = ctx.getBean(CheckCurrentBidService.class);
 
-        CurrentBid b1 = new CurrentBid.Builder(500)
+        CurrentBid b1 = new CurrentBid.Builder(70)
+                .seller("sellerName")
                 .build();
 
-        CurrentBid b2 = new CurrentBid.Builder(600)
+        CurrentBid b2 = new CurrentBid.Builder(50)
+                .seller("sellerName")
                 .build();
 
-        CurrentBid b3 = new CurrentBid.Builder(200)
+        CurrentBid b3 = new CurrentBid.Builder(80)
+                .seller("sellerName")
                 .build();
 
         currentBidRepository.save(b1);
@@ -63,7 +66,7 @@ public class CheckCurrentBidTest {
         currentBidRepository.save(b3);
 
         List<CurrentBid> currentBid = checkCurrentBidService.getCurrentBid();
-        Assert.assertEquals(currentBid.size(), 2);
+        Assert.assertEquals(currentBid.size(), 3);
 
     }
     
