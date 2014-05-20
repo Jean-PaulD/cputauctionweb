@@ -53,7 +53,7 @@ public class ItemCondition {
 
         public Builder ItemCondition(ItemCondition itemCondition) {
             id = itemCondition.getID();
-            name = itemCondition.getCondition();
+            name = itemCondition.getName();
             condition = itemCondition.getCondition();
             return this;
         }

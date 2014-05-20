@@ -19,6 +19,10 @@ import javax.persistence.Id;
 public class CurrentBid implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -63,14 +67,34 @@ public class CurrentBid implements Serializable {
         return id;
     }
 
+    public double getBidPrice() {
+        return bidPrice;
+    }
+
+    public String getSeller() {
+        return seller;
+    }
+
     public static class Builder {
 
         private Long id;
         private double bidPrice;
         private String seller;
-
+        public Builder(){}
         public Builder(double i) {
             bidPrice = i;
+        }
+        
+        public Builder bidPrice( double i){
+            bidPrice = i;
+            return this;
+        }
+        
+        public Builder currentBid(CurrentBid c) {
+            id = c.getId();
+            bidPrice = c.getBidPrice();
+            seller = c.getSeller();
+            return this;
         }
 
         public Builder seller(String sellerName) {
@@ -81,6 +105,8 @@ public class CurrentBid implements Serializable {
         public CurrentBid build() {
             return new CurrentBid(this);
         }
+
+
     }
 
 }

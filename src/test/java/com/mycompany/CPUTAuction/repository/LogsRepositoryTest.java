@@ -60,13 +60,15 @@ public class LogsRepositoryTest {
     private void updateLogs() {
         repo = ctx.getBean(LogsRepository.class);
         Logs b = repo.findOne(id);
-        Logs updatedLogs = new Logs.Builder("15:00")
+        Logs updatedLogs = new Logs.Builder()
+                .logs(b)
+                .tmpLog("15:00")
                 .build();
 
         repo.save(updatedLogs);
 
         Logs newLogs = repo.findOne(id);
-        Assert.assertEquals(newLogs.getTmpLog(), "14:00");//14:00
+        Assert.assertEquals(newLogs.getTmpLog(), "15:00");//14:00
 
     }
 

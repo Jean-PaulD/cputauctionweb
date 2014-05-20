@@ -53,13 +53,23 @@ public class Seller implements Serializable {
         private String username;
         private List<Bid> bid;
 
+        public Builder seller(Seller s) {
+            id = s.getID();
+            username = s.getUsername();
+            return this;
+        }
+
         public Builder() {
         }
 
         public Builder(String username1) {
             username = username1;
         }
-
+        
+        public Builder username(String i){
+            username = i;
+            return this;}
+        
         /*public List<Bid> bid_id(Long i){
          return bid;
          }*/

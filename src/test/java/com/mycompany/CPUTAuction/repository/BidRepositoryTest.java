@@ -57,14 +57,14 @@ public class BidRepositoryTest {
         repo = ctx.getBean(BidRepository.class);
         Bid b = repo.findOne(id);
         Bid updatedBid = new Bid.Builder(1002)
-                .b(b)
+                .bid(b)
                 .amount(201)
                 .build();
 
         repo.save(updatedBid);
 
         Bid newBid = repo.findOne(id);
-        Assert.assertEquals(newBid.getAmount(), 300.0);//201.0
+        Assert.assertEquals(newBid.getAmount(), 201.0);//201.0
 
     }
 
@@ -77,7 +77,6 @@ public class BidRepositoryTest {
         Bid deletedBid = repo.findOne(id);
 
         Assert.assertNull(deletedBid);
-
     }
 
     @BeforeClass

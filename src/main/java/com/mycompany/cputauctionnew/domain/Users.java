@@ -28,7 +28,10 @@ public class Users implements Serializable {
     @OneToMany
     @JoinColumn(name = "Users_id")
     private List<Logs> logs;
-private Users(){}
+
+    private Users() {
+    }
+
     private Users(Builder aThis) {
         id = aThis.id;
         accountType = aThis.accountType;
@@ -36,15 +39,30 @@ private Users(){}
 
     }
 
-    public String accountType(){
+    public String accountType() {
         return accountType;
     }
-    
+
+    public List<Logs> getLogs() {
+        return logs;
+    }
+
     public static class Builder {
 
         private Long id;
         private String accountType;
         private List<Logs> logs;
+        
+        public Builder accountType(String i){
+            accountType = i;
+            return this;
+        }
+        public Builder users(Users u) {
+            id = u.getID();
+            accountType = u.accountType();
+            logs = u.getLogs();
+            return this;
+        }
 
         public Builder() {
         }

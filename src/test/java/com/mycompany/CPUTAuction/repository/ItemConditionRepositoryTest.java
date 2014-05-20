@@ -65,14 +65,15 @@ public class ItemConditionRepositoryTest {
         repo = ctx.getBean(ItemConditionRepository.class);
         ItemCondition b = repo.findOne(id);
         ItemCondition updatedItemCondition = new ItemCondition.Builder("newName")
-                .condition("good")
                 .ItemCondition(b)
+                .condition("good")
+                
                 .build();
 
         repo.save(updatedItemCondition);
 
         ItemCondition newItemCondition = repo.findOne(id);
-        Assert.assertEquals(newItemCondition.getCondition(), "bad");//good
+        Assert.assertEquals(newItemCondition.getCondition(), "good");//good
 
     }
 

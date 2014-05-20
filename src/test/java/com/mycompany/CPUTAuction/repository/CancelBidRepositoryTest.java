@@ -5,16 +5,12 @@
  */
 package com.mycompany.CPUTAuction.repository;
 
-import static com.mycompany.CPUTAuction.repository.AccountRepositoryTest.ctx;
 import com.mycompany.cputauctionnew.repository.CancelBidRepository;
-import static com.mycompany.CPUTAuction.repository.BidRepositoryTest.ctx;
 import com.mycompany.cputauctionnew.app.config.ConnectionConfig;
 import com.mycompany.cputauctionnew.domain.CancelBid;
-import com.mycompany.cputauctionnew.repository.BidRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
-import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -50,6 +46,44 @@ public class CancelBidRepositoryTest {
         Assert.assertNotNull(can);
     }
 
+    @Test(dependsOnMethods = "cancelBid")
+    public void readBid() {
+        repo = ctx.getBean(CancelBidRepository.class);
+        CancelBid b = repo.findOne(id);
+        Assert.assertEquals(b.getCancelled(), "yes");
+
+    }
+    
+    @Test(dependsOnMethods = "readBid")
+    private void updateBid() {
+        repo = ctx.getBean(CancelBidRepository.class);
+        CancelBid b = repo.findOne(id);
+        CancelBid updatedBid = new CancelBid.Builder()
+                .b(b)
+                .cancelled("no")
+                
+                .build();
+
+        repo.save(updatedBid);
+
+        CancelBid newBid = repo.findOne(id);
+        Assert.assertEquals(newBid.getCancelled(), "no");//201.0
+
+    }
+    
+    //@Test(dependsOnMethods = "readBid")
+    @Test(dependsOnMethods = "updateBid")
+    private void deleteBid() {
+        repo = ctx.getBean(CancelBidRepository.class);
+        CancelBid b = repo.findOne(id);
+        repo.delete(b);
+
+        CancelBid deletedBid = repo.findOne(id);
+
+        Assert.assertNull(deletedBid);
+
+    }
+    
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);

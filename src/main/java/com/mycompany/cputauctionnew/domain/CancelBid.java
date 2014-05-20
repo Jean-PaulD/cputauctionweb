@@ -20,32 +20,52 @@ import javax.persistence.Id;
 public class CancelBid implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int age;
-    private String cancelled = "no";
+    private String cancelled;
     //@Column(unique = true)
     //private String email;
 
-    private CancelBid(){}
-    
+    private CancelBid() {
+    }
+
     private CancelBid(Builder builder) {
         id = builder.id;
-        cancelled = builder.cancelled;
+        cancelled = builder.getCancelled();
     }
 
     public Long getId() {
         return id;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public String getCancelled() {
+        return cancelled;
+    }
+
     public static class Builder {
-        
+
         private Long id;
-        private String cancelled = "no";
+        private String cancelled;// = "no";
+
+        public Builder() {
+        }
 
         public Builder(String i) {
             cancelled = i;
+        }
+        public Builder cancelled(String i){
+            cancelled = i;
+            return this;
         }
 
         public Builder id(Long value) {
@@ -58,7 +78,13 @@ public class CancelBid implements Serializable {
         }
 
         public Builder b(CancelBid b) {
+            id = b.getId();
+            cancelled = b.getCancelled();
             return this;
+        }
+
+        public String getCancelled() {
+            return cancelled;
         }
 
     }

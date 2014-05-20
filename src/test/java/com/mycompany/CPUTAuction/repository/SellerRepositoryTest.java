@@ -58,13 +58,15 @@ public class SellerRepositoryTest {
     private void updateSeller() {
         repo = ctx.getBean(SellerRepository.class);
         Seller b = repo.findOne(id);
-        Seller updatedSeller = new Seller.Builder("normal")
+        Seller updatedSeller = new Seller.Builder()
+                .seller(b)
+                .username("normal")
                 .build();
 
         repo.save(updatedSeller);
 
         Seller newSeller = repo.findOne(id);
-        Assert.assertEquals(newSeller.getUsername(), "sellerUsername");//normal
+        Assert.assertEquals(newSeller.getUsername(), "normal");//normal
 
     }
 

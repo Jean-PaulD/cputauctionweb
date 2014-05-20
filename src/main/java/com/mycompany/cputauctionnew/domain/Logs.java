@@ -20,6 +20,10 @@ import javax.persistence.Id;
 public class Logs implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -32,8 +36,8 @@ public class Logs implements Serializable {
     }
 
     private Logs(Builder builder) {
-            id = builder.id;
-            tmpLog = builder.tmpLog;
+        id = builder.id;
+        tmpLog = builder.tmpLog;
     }
 
     public Timestamp getLog() {
@@ -56,6 +60,18 @@ public class Logs implements Serializable {
         return tmpLog;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public static class Builder {
 
         private Long id;
@@ -67,17 +83,23 @@ public class Logs implements Serializable {
         public Builder() {
         }
 
+        public Builder logs(Logs l) {
+            id = l.getID();
+            tmpLog = l.getTmpLog();
+            return this;
+        }
+
         public Builder(String tmpLog1) {
             tmpLog = tmpLog1;
         }
 
-        public Timestamp getLog() {
-            return log;
-        }
+        //public Builder getLog() {
+         //   return this;
+       // }
 
-        public String tmpLog(String i) {
+        public Builder tmpLog(String i) {
             tmpLog = i;
-            return tmpLog;
+            return this;
         }
 
         public Builder id(Long value) {

@@ -59,14 +59,16 @@ public class UsersRepositoryTest {
     private void updateUsers() {
         repo = ctx.getBean(UsersRepository.class);
         Users b = repo.findOne(id);
-        Users updatedUsers = new Users.Builder("normal")
+        Users updatedUsers = new Users.Builder()
+                .users(b)
+                .accountType("normal")
                 .logs(null)
                 .build();
 
         repo.save(updatedUsers);
 
         Users newUsers = repo.findOne(id);
-        Assert.assertEquals(newUsers.accountType(), "admin");//normal
+        Assert.assertEquals(newUsers.accountType(), "normal");//normal
 
     }
 

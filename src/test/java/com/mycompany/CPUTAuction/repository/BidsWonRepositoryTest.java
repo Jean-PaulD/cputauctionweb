@@ -47,6 +47,42 @@ public class BidsWonRepositoryTest {
 
     }
     
+    @Test(dependsOnMethods = "winBid")
+    public void readBidsWon() {
+        repo = ctx.getBean(BidsWonRepository.class);
+        BidsWon b = repo.findOne(id);
+        Assert.assertEquals(b.getSeller(), "John");
+
+    }
+    
+    @Test(dependsOnMethods = "readBidsWon")
+    private void updateBidsWon() {
+        repo = ctx.getBean(BidsWonRepository.class);
+        BidsWon b = repo.findOne(id);
+        BidsWon updatedBid = new BidsWon.Builder(1002)
+                .bidsWon(b)
+                .seller("Jack")
+                .build();
+
+        repo.save(updatedBid);
+
+        BidsWon newBid = repo.findOne(id);
+        Assert.assertEquals(newBid.getSeller(), "Jack");
+
+    }
+    
+     @Test(dependsOnMethods = "updateBidsWon")
+    private void deleteBid() {
+        repo = ctx.getBean(BidsWonRepository.class);
+        BidsWon b = repo.findOne(id);
+        repo.delete(b);
+
+        BidsWon deletedBid = repo.findOne(id);
+
+        Assert.assertNull(deletedBid);
+
+    }
+    
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //

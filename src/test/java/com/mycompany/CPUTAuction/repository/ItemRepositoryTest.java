@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.CPUTAuction.repository;
 
 import static com.mycompany.CPUTAuction.repository.AccountRepositoryTest.ctx;
@@ -25,7 +24,7 @@ import org.testng.annotations.Test;
  * @author Jean-Paul
  */
 public class ItemRepositoryTest {
-    
+
     public ItemRepositoryTest() {
     }
 
@@ -35,7 +34,7 @@ public class ItemRepositoryTest {
     private ItemRepository repo;
 
     @Test
-    public void addItem(){
+    public void addItem() {
         repo = ctx.getBean(ItemRepository.class);
         Item b = new Item.Builder(901)
                 .itemName("itemName")
@@ -46,10 +45,46 @@ public class ItemRepositoryTest {
         repo.save(b);
         id = b.getId();
         Assert.assertNotNull(b);
+    }
+
+    @Test(dependsOnMethods = "addItem")
+    public void readBid() {
+        repo = ctx.getBean(ItemRepository.class);
+        Item b = repo.findOne(id);
+        Assert.assertEquals(b.getItemDescription(), "itemDescription");
+    }
+
+    @Test(dependsOnMethods = "readBid")
+    private void updateBid() {
+        repo = ctx.getBean(ItemRepository.class);
+        Item b = repo.findOne(id);
+        Item updatedBid = new Item.Builder(901)
+                .item(b)
+                .itemName("itemName")
+                .itemDescription("itemDescription")
+                .price(201)
+                .itemType("itemType")
+                .build();
+
+        repo.save(updatedBid);
+
+        Item newBid = repo.findOne(id);
+        Assert.assertEquals(newBid.getPrice(), 201.0);//201.0
 
     }
-    
-   @BeforeClass
+
+    @Test(dependsOnMethods = "updateBid")
+    private void deleteBid() {
+        repo = ctx.getBean(ItemRepository.class);
+        Item b = repo.findOne(id);
+        repo.delete(b);
+
+        Item deletedBid = repo.findOne(id);
+
+        Assert.assertNull(deletedBid);
+    }
+
+    @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);
 

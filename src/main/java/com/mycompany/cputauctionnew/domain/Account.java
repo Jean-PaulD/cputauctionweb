@@ -23,6 +23,10 @@ import javax.persistence.OneToMany;
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -62,6 +66,34 @@ public class Account implements Serializable {
     
     public Long getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getItemID() {
+        return itemID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public List<Bid> getBid() {
+        return Bid;
     }
 
     public static class Builder {
@@ -107,6 +139,18 @@ public class Account implements Serializable {
 
         public Account build() {
             return new Account(this);
+        }
+        
+        public Builder account(Account acc){
+            id = acc.getId();
+        name= acc.getName();
+        surname= acc.getSurname();
+        age= acc.getAge();
+        email= acc.getEmail();
+        itemID= acc.getItemID();
+        password= acc.getPassword();
+        username= acc.getUsername();
+        return this;
         }
 
     }

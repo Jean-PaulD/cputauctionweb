@@ -19,14 +19,19 @@ import javax.persistence.Id;
 public class BidsWon implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private double bidPrice;
     private String seller;
 
-    private BidsWon(){}
-    
+    private BidsWon() {
+    }
+
     private BidsWon(Builder builder) {
         id = builder.id;
         bidPrice = builder.bidPrice;
@@ -62,6 +67,14 @@ public class BidsWon implements Serializable {
         return id;
     }
 
+    public double getBidPrice() {
+        return bidPrice;
+    }
+
+    public String getSeller() {
+        return seller;
+    }
+
     public static class Builder {
 
         private Long id;
@@ -81,6 +94,12 @@ public class BidsWon implements Serializable {
             return new BidsWon(this);
         }
 
+        public Builder bidsWon(BidsWon bw) {
+            id = bw.getId();
+            bidPrice = bw.getBidPrice();
+            seller = bw.getSeller();
+            return this;
+        }
     }
 
 }

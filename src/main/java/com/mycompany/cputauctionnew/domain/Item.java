@@ -23,6 +23,10 @@ import javax.persistence.OneToMany;
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -33,6 +37,7 @@ public class Item implements Serializable {
     private String itemDescription;
     private String itemType;
     private double price;
+
     //@Embedded
     //private Contact contact;
     //@OneToMany(cascade = CascadeType.ALL)
@@ -48,7 +53,8 @@ public class Item implements Serializable {
      @JoinColumn(name = "Item_id")
      private List<ItemCondition> itemCondition;
      */
-    private Item(){}
+    private Item() {
+    }
 
     private Item(Builder builder) {
         id = builder.id;
@@ -89,6 +95,26 @@ public class Item implements Serializable {
         return id;
     }
 
+    public int getItemID() {
+        return itemID;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public String getItemType() {
+        return itemType;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
     public static class Builder {
 
         private long id;
@@ -97,11 +123,21 @@ public class Item implements Serializable {
         private String itemDescription;
         private double price;
         private String itemType;
-
+        
         public Builder(int i) {
             itemID = i;
         }
 
+        public Builder item(Item i) {
+            id = i.getId();
+            itemID =i.getItemID();
+            itemName = i.getItemName();
+            itemDescription = i.getItemDescription();
+            price = i.getPrice();
+            itemType = i.getItemType();
+
+            return this;
+        }
         public Builder id(long i) {
             id = i;
             return this;

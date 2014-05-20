@@ -30,6 +30,10 @@ import javax.persistence.Persistence;
 public class Bid implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -47,7 +51,6 @@ public class Bid implements Serializable {
     //@JoinColumn(name = "bid_id")
     //List<Account> account;
     //EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_CPUTAuctionNew_war_1.0-SNAPSHOTPU");
-
     @OneToMany
     @JoinColumn(name = "bid_id")
     private List<BidsWon> bidsWon;
@@ -61,8 +64,9 @@ public class Bid implements Serializable {
     @JoinColumn(name = "bid_id")
     private List<Item> item;
 
-    private Bid(){}
-    
+    private Bid() {
+    }
+
     private Bid(Builder builder) {
 
         id = builder.id;
@@ -84,6 +88,26 @@ public class Bid implements Serializable {
     public Long getId() {
 
         return id;
+    }
+
+    public int getBid_id() {
+        return Bid_id;
+    }
+
+    public List<BidsWon> getBidsWon() {
+        return bidsWon;
+    }
+
+    public List<CancelBid> getCancelBid() {
+        return cancelBid;
+    }
+
+    public List<CurrentBid> getCurrentBid() {
+        return currentBid;
+    }
+
+    public List<Item> getItem() {
+        return item;
     }
 
     public static class Builder {
@@ -126,11 +150,17 @@ public class Bid implements Serializable {
         }
 
         public Bid build() {
+
             return new Bid(this);
         }
 
-        public Builder b(Bid b) {
-
+        public Builder bid(Bid b) {
+            id = b.getId();
+            bidsWon = b.bidsWon;
+            cancelBid = b.cancelBid;
+            currentBid = b.getCurrentBid();
+            amount = b.getAmount();
+            Bid_id = b.getBid_id();
             return this;
         }
 
@@ -164,19 +194,19 @@ public class Bid implements Serializable {
     public String toString() {
         return "com.mycompany.cputauctionnew.domain.Bid[ id=" + id + " ]";
     }
-/*
-    public void persist(Object object) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.persist(object);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-    } */
+    /*
+     public void persist(Object object) {
+     EntityManager em = emf.createEntityManager();
+     try {
+     em.getTransaction().begin();
+     em.persist(object);
+     em.getTransaction().commit();
+     } catch (Exception e) {
+     Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+     em.getTransaction().rollback();
+     } finally {
+     em.close();
+     }
+     } */
 
 }

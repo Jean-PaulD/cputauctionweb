@@ -35,7 +35,8 @@ public class CurrentBidRepositoryTest {
     private CurrentBidRepository repo;
 
     @Test
-    public void CurrentBid(){
+    public void currentBid(){
+        System.out.println("CurrentBid mthod we in now");
         repo = ctx.getBean(CurrentBidRepository.class);
         CurrentBid b = new CurrentBid.Builder(70)
                 .seller("sellerName")
@@ -46,6 +47,40 @@ public class CurrentBidRepositoryTest {
 
     }
     
+    @Test(dependsOnMethods = "currentBid")
+    public void readBid() {
+        repo = ctx.getBean(CurrentBidRepository.class);
+        CurrentBid b = repo.findOne(id);
+        Assert.assertEquals(b.getBidPrice(), 70.0);
+
+    }
+    
+    @Test(dependsOnMethods = "readBid")
+    private void updateBid() {
+        repo = ctx.getBean(CurrentBidRepository.class);
+        CurrentBid b = repo.findOne(id);
+        CurrentBid updatedBid = new CurrentBid.Builder()
+                .currentBid(b)
+                .bidPrice(80.0)
+                .build();
+
+        repo.save(updatedBid);
+
+        CurrentBid newBid = repo.findOne(id);
+        Assert.assertEquals(newBid.getBidPrice(), 80.0);//201.0
+
+    }
+    
+    @Test(dependsOnMethods = "updateBid")
+    private void deleteBid() {
+        repo = ctx.getBean(CurrentBidRepository.class);
+        CurrentBid b = repo.findOne(id);
+        repo.delete(b);
+
+        CurrentBid deletedBid = repo.findOne(id);
+
+        Assert.assertNull(deletedBid);
+    }
     
     @BeforeClass
     public static void setUpClass() throws Exception {
