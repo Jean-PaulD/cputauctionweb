@@ -117,7 +117,7 @@ public class Item implements Serializable {
 
     public static class Builder {
 
-        private long id;
+        private Long id;
         private int itemID;
         private String itemName;
         private String itemDescription;
@@ -138,7 +138,7 @@ public class Item implements Serializable {
 
             return this;
         }
-        public Builder id(long i) {
+        public Builder id(Long i) {
             id = i;
             return this;
         }

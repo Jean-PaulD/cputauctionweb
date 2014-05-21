@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.mycompany.CPUTAuction.services;
 
 import com.mycompany.cputauctionnew.app.config.ConnectionConfig;
-import com.mycompany.cputauctionnew.domain.CurrentBid;
-import com.mycompany.cputauctionnew.repository.CurrentBidRepository;
-import com.mycompany.cputauctionnew.services.CheckCurrentBidService;
+import com.mycompany.cputauctionnew.domain.ItemCondition;
+import com.mycompany.cputauctionnew.repository.ItemConditionRepository;
+import com.mycompany.cputauctionnew.services.ItemConditionService;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
+import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -23,46 +25,47 @@ import org.testng.annotations.Test;
  *
  * @author Jean-Paul
  */
-public class CheckCurrentBidTest {
-
-    public CheckCurrentBidTest() {
+public class CheckItemConditionServiceTest {
+    
+    public CheckItemConditionServiceTest() {
     }
     public static ApplicationContext ctx;
-    private Long id;
-
-    private CurrentBidRepository currentBidRepository;
-    private CheckCurrentBidService checkCurrentBidService;
-
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
     // public void hello() {}
+
     
-      @Test
-    public void checkCurrentBidtTest() {
-        currentBidRepository = ctx.getBean(CurrentBidRepository.class);
-        checkCurrentBidService = ctx.getBean(CheckCurrentBidService.class);
+    private Long id;
 
-        CurrentBid b1 = new CurrentBid.Builder(70)
-                .seller("sellerName")
+    private ItemConditionRepository itemConditionRepository;
+    private ItemConditionService itemConditionService;
+    
+    @Test
+    public void checkCondition(){
+        itemConditionRepository = ctx.getBean(ItemConditionRepository.class);
+        itemConditionService = ctx.getBean(ItemConditionService.class);
+
+        ItemCondition i1 = new ItemCondition.Builder("Jean")
+                .condition("good")
                 .build();
-
-        CurrentBid b2 = new CurrentBid.Builder(50)
-                .seller("sellerName")
+        
+        ItemCondition i2 = new ItemCondition.Builder("Jack")
+                .condition("bad")
                 .build();
-
-        CurrentBid b3 = new CurrentBid.Builder(80)
-                .seller("sellerName")
+        
+        ItemCondition i3 = new ItemCondition.Builder("Jason")
+                .condition("good")
                 .build();
+        
+        itemConditionRepository.save(i1);
+        itemConditionRepository.save(i2);
+        itemConditionRepository.save(i3);
+        
+        List<ItemCondition> i = itemConditionService.getItemCondition("Good");
 
-        currentBidRepository.save(b1);
-        currentBidRepository.save(b2);
-        currentBidRepository.save(b3);
-
-        List<CurrentBid> currentBid = checkCurrentBidService.getCurrentBid();
-        Assert.assertEquals(currentBid.size(), 3);
-
+        Assert.assertEquals(i.size(), 2);
     }
     
     @BeforeClass
@@ -81,7 +84,7 @@ public class CheckCurrentBidTest {
 
     @AfterMethod
     public void tearDownMethod() throws Exception {
-       currentBidRepository = ctx.getBean(CurrentBidRepository.class);
-       currentBidRepository.deleteAll();
+       itemConditionRepository = ctx.getBean(ItemConditionRepository.class);
+       itemConditionRepository.deleteAll();
     }
 }
