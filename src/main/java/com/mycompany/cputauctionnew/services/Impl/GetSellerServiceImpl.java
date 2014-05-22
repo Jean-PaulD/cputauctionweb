@@ -38,5 +38,30 @@ public class GetSellerServiceImpl implements GetSellerService {
     public List<Seller> findAll() {
         return sellerRepository.findAll();
     }
+    
+    @Override
+    public Seller find(Long id) {
+        return sellerRepository.findOne(id);
+    }
+
+    @Override
+    public Seller persist(Seller entity) {
+        return sellerRepository.save(entity); 
+    }
+
+    @Override
+    public Seller merge(Seller entity) {
+
+        if (entity.getId() != null) {
+            return sellerRepository.save(entity);
+        }
+        return null;
+    }
+
+    @Override
+    public void remove(Seller entity) {
+        sellerRepository.delete(entity); 
+    }
+    
 
 }

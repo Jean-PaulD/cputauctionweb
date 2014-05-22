@@ -37,5 +37,29 @@ public class ItemConditionServiceImpl implements ItemConditionService {
     public List<ItemCondition> findAll() {
         return itemConditionRepository.findAll();
     }
+    
+    @Override
+    public ItemCondition find(Long id) {
+        return itemConditionRepository.findOne(id);
+    }
+
+    @Override
+    public ItemCondition persist(ItemCondition entity) {
+        return itemConditionRepository.save(entity); 
+    }
+
+    @Override
+    public ItemCondition merge(ItemCondition entity) {
+
+        if (entity.getId() != null) {
+            return itemConditionRepository.save(entity);
+        }
+        return null;
+    }
+
+    @Override
+    public void remove(ItemCondition entity) {
+        itemConditionRepository.delete(entity); 
+    }
 
 }

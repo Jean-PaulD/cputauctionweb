@@ -5,6 +5,7 @@
  */
 package com.mycompany.cputauctionnew.services.Impl;
 
+import com.mycompany.cputauctionnew.domain.Bid;
 import com.mycompany.cputauctionnew.domain.CancelBid;
 import com.mycompany.cputauctionnew.domain.Users;
 import com.mycompany.cputauctionnew.repository.CancelBidRepository;
@@ -38,6 +39,30 @@ public class CancelBidServiceImpl implements CancelBidService {
     @Override
     public List<CancelBid> finAll() {
         return cancelBidRepository.findAll();
+    }
+
+    @Override
+    public CancelBid find(Long id) {
+        return cancelBidRepository.findOne(id);
+    }
+
+    @Override
+    public CancelBid persist(CancelBid entity) {
+        return cancelBidRepository.save(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CancelBid merge(CancelBid entity) {
+
+        if (entity.getId() != null) {
+            return cancelBidRepository.save(entity);
+        }
+        return null;
+    }
+
+    @Override
+    public void remove(CancelBid entity) {
+        cancelBidRepository.delete(entity); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

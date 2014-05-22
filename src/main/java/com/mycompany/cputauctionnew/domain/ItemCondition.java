@@ -45,6 +45,10 @@ public class ItemCondition {
         return condition;
     }
 
+    public Object getId() {
+        return id;
+    }
+
     public static class Builder {
 
         private Long id;

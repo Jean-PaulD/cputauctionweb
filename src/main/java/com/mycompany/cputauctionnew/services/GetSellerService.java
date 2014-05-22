@@ -17,5 +17,9 @@ public interface GetSellerService {
 
     public List<Seller> getSeller(String abc);
     public List<Seller> findAll();
+    public Seller find(Long id);
+    public Seller persist(Seller entity);
+    public Seller merge(Seller entity);
+    public void remove(Seller entity);
     
 }

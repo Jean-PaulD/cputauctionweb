@@ -17,5 +17,9 @@ public interface ItemConditionService {
 
     public List<ItemCondition> getItemCondition(String good);
     public List<ItemCondition> findAll();
+    public ItemCondition find(Long id);
+    public ItemCondition persist(ItemCondition entity);
+    public ItemCondition merge(ItemCondition entity);
+    public void remove(ItemCondition entity);
     
 }

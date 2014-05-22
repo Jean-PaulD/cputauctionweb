@@ -63,7 +63,7 @@ public class FindCancelledBidsTest {
         cancelBidRepository.save(s3);
         
         List<CancelBid> s = cancelBidService.getCancelBid();
-        Assert.assertEquals(s.size(), 1);
+        Assert.assertEquals(s.size(), 2);
     }
     
     @BeforeClass

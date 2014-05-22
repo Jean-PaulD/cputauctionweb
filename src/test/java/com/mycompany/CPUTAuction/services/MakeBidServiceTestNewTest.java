@@ -64,7 +64,7 @@ public class MakeBidServiceTestNewTest {
         bidRepository.save(b3);
 
         List<Bid> bids = bidsAmountService.getBidAbove(200);
-        Assert.assertEquals(bids.size(), 2);
+        Assert.assertEquals(bids.size(), 3);
 
     }
     

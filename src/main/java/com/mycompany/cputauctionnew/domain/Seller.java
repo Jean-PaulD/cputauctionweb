@@ -46,6 +46,10 @@ public class Seller implements Serializable {
     public Long getID() {
         return id;
     }
+    
+    public Long getId() {
+        return id;
+    }
 
     public static class Builder {
 

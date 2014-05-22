@@ -36,5 +36,35 @@ public class CheckCurrentBidServiceImpl implements CheckCurrentBidService {
     public List<CurrentBid> findAll() {
        return currentBidRepository.findAll();
     }
+    
+    @Override
+    public List<CurrentBid> finAll() {
+        return currentBidRepository.findAll();
+    }
+
+    @Override
+    public CurrentBid find(Long id) {
+        return currentBidRepository.findOne(id);
+    }
+
+    @Override
+    public CurrentBid persist(CurrentBid entity) {
+        return currentBidRepository.save(entity); 
+    }
+
+    @Override
+    public CurrentBid merge(CurrentBid entity) {
+
+        if (entity.getId() != null) {
+            return currentBidRepository.save(entity);
+        }
+        return null;
+    }
+
+    @Override
+    public void remove(CurrentBid entity) {
+        currentBidRepository.delete(entity); 
+    }
+    
 
 }

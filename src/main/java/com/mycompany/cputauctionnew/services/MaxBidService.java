@@ -17,5 +17,9 @@ public interface MaxBidService {
 
     public List<Bid> getMaxBid();
     public List<Bid> findAll();
+    public Bid find(Long id);
+    public Bid persist(Bid entity);
+    public Bid merge(Bid entity);
+    public void remove(Bid entity);
     
 }

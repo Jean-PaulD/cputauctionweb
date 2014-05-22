@@ -6,6 +6,7 @@
 
 package com.mycompany.cputauctionnew.services;
 
+import com.mycompany.cputauctionnew.domain.Bid;
 import com.mycompany.cputauctionnew.domain.CancelBid;
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface CancelBidService {
 
     public List<CancelBid> getCancelBid();
     public List<CancelBid> finAll();
+    public CancelBid find(Long id);
+    public CancelBid persist(CancelBid entity);
+    public CancelBid merge(CancelBid entity);
+    public void remove(CancelBid entity);
 }

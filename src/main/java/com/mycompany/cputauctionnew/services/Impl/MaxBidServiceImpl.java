@@ -41,4 +41,29 @@ public class MaxBidServiceImpl implements MaxBidService {
     public List<Bid> findAll() {
         return bidRepository.findAll();
     }
+    
+    
+    @Override
+    public Bid find(Long id) {
+        return bidRepository.findOne(id);
+    }
+
+    @Override
+    public Bid persist(Bid entity) {
+        return bidRepository.save(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Bid merge(Bid entity) {
+
+        if (entity.getId() != null) {
+            return bidRepository.save(entity);
+        }
+        return null;
+    }
+
+    @Override
+    public void remove(Bid entity) {
+        bidRepository.delete(entity); //To change body of generated methods, choose Tools | Templates.
+    }
 }
