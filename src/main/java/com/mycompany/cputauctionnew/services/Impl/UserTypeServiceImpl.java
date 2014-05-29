@@ -6,9 +6,9 @@
 
 package com.mycompany.cputauctionnew.services.Impl;
 
-import com.mycompany.cputauctionnew.domain.Bid;
 import com.mycompany.cputauctionnew.domain.Users;
-import com.mycompany.cputauctionnew.repository.BidRepository;
+import com.mycompany.cputauctionnew.domain.Users;
+import com.mycompany.cputauctionnew.repository.UsersRepository;
 import com.mycompany.cputauctionnew.repository.UsersRepository;
 import com.mycompany.cputauctionnew.services.UserTypeService;
 import java.util.ArrayList;
@@ -37,8 +37,35 @@ public class UserTypeServiceImpl implements UserTypeService {
         return users;
     }
     
+    @Override
     public List<Users> findAll() {
        return usersRepository.findAll();
     }
+    
+    
+    @Override
+    public Users find(Long id) {
+        return usersRepository.findOne(id);
+    }
+
+    @Override
+    public Users persist(Users entity) {
+        return usersRepository.save(entity);
+    }
+
+    @Override
+    public Users merge(Users entity) {
+        if (entity.getID() != null) {
+            return usersRepository.save(entity);
+        }
+        return null;
+    }
+
+    @Override
+    public void remove(Users entity) {
+
+        usersRepository.delete(entity);
+    }
+    
     
 }

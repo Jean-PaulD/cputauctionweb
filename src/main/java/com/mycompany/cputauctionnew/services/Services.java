@@ -6,13 +6,20 @@
 
 package com.mycompany.cputauctionnew.services;
 
-import com.mycompany.cputauctionnew.domain.Users;
 import java.util.List;
 
 /**
  *
  * @author Jean-Paul
  */
-public interface UserTypeService extends Services <Users, Long>{
-    List<Users> getAdmin();
+public interface Services<S, ID> {
+    public S find(ID id);
+
+    public S persist(S entity);
+
+    public S merge(S entity);
+
+    public void remove(S entity);
+
+    public List<S> findAll();
 }
